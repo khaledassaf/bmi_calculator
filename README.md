@@ -1,2 +1,4 @@
 # bmi_calculator
-![BMI Calculator Screenshot](https://github.com/khaledassaf/bmi_calculator/blob/master/template/iPhone%20X.png)
+
+A simple flutter app that implements a mock design I created in Adobe XD.
+<img src="https://github.com/khaledassaf/bmi_calculator/blob/master/template/iPhone%20X.png"  width="300">
