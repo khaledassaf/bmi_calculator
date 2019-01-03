@@ -23,14 +23,18 @@ class CustomSlider extends StatelessWidget {
       width: width + height * 2,
       child: GestureDetector(
         onHorizontalDragStart: (details) {
-          var xOffset = context.findRenderObject().getTransformTo(null).row0[3];
-          var percPos = ((details.globalPosition.dx - xOffset) / width) * max;
+          RenderBox referenceBox = context.findRenderObject();
+          Offset localPosition = referenceBox.globalToLocal(details.globalPosition);
+
+          var percPos = (localPosition.dx / width) * max;
           initial = details.globalPosition.dx;
           onChanged(percPos.clamp(min, max));
         },
         onHorizontalDragUpdate: (details) {
-          var xOffset = context.findRenderObject().getTransformTo(null).row0[3];
-          double distance = details.globalPosition.dx - initial - xOffset;
+          RenderBox referenceBox = context.findRenderObject();
+          Offset localPosition = referenceBox.globalToLocal(details.globalPosition);
+          double distance = localPosition.dx - initial;
+          
           double percPos = distance / width * max;
           onChanged(percPos.clamp(min, max));
         },
